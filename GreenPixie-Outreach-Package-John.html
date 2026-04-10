@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Ridd's Special Package — GreenPixie</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #0a1a12;
+  --accent: #00d68f;
+  --accent-dark: #00b574;
+  --blue: #3b82f6;
+  --red: #dc2626;
+  --red-dark: #991b1b;
+  --white: #ffffff;
+  --card-bg: #0f2419;
+  --alt-bg: #f0fdf4;
+  --text-muted: #86efac;
+  --text-dim: #4ade80;
+  --gray-200: #e5e7eb;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --gold: #fbbf24;
+  --navy: #0a1628;
+  --radius: 20px;
+  --nav-width: 220px;
+}
+
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.7;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ SIDE NAV ═══ */
+.side-nav {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--nav-width);
+  background: #06110b;
+  border-right: 1px solid rgba(0,214,143,0.15);
+  z-index: 100;
+  overflow-y: auto;
+  padding: 32px 0 32px;
+  display: flex;
+  flex-direction: column;
+}
+.side-nav-logo {
+  padding: 0 20px 24px;
+  border-bottom: 1px solid rgba(0,214,143,0.1);
+  margin-bottom: 16px;
+}
+.side-nav-logo .brand {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+.side-nav-logo .sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+}
+.nav-item:hover {
+  background: rgba(0,214,143,0.08);
+}
+.nav-item.active {
+  border-left-color: var(--accent);
+  background: rgba(0,214,143,0.1);
+}
+.nav-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.nav-item.active .nav-dot,
+.nav-item:hover .nav-dot {
+  background: var(--accent);
+}
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.3;
+  transition: color 0.15s;
+}
+.nav-item.active .nav-label,
+.nav-item:hover .nav-label {
+  color: var(--white);
+}
+.nav-section-title {
+  padding: 16px 20px 6px;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ═══ MAIN CONTENT ═══ */
+.main {
+  margin-left: var(--nav-width);
+  min-height: 100vh;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+  background: linear-gradient(160deg, #0d2318 0%, #0a1a12 60%, #061410 100%);
+  padding: 80px 60px 60px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,214,143,0.12);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), #00b574, var(--blue));
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,214,143,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-for-tag {
+  display: inline-block;
+  background: rgba(0,214,143,0.15);
+  border: 1px solid rgba(0,214,143,0.3);
+  color: var(--accent);
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 58px;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+.hero h1 span { color: var(--accent); }
+.hero-subtitle {
+  font-size: 20px;
+  color: rgba(255,255,255,0.65);
+  max-width: 620px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+.hero-wild-goal {
+  background: rgba(0,214,143,0.08);
+  border: 1px solid rgba(0,214,143,0.2);
+  border-radius: 16px;
+  padding: 24px 32px;
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+.hero-wild-goal .wg-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.hero-wild-goal p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+  margin: 0;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: #0a1a12;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.3px;
+}
+.btn-primary:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--white);
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.2);
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  background: rgba(0,214,143,0.08);
+}
+
+/* ═══ SECTION WRAPPER ═══ */
+.section {
+  padding: 72px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.section-alt {
+  background: #0d2017;
+}
+.section-light {
+  background: var(--alt-bg);
+  color: var(--gray-800);
+}
+.section-light h2, .section-light h3, .section-light h4 { color: #111827; }
+.section-light p, .section-light li { color: var(--gray-600); }
+.section-light .tag { background: #111827; color: var(--gold); }
+
+.section-header {
+  margin-bottom: 48px;
+}
+.tag {
+  display: inline-block;
+  background: rgba(0,214,143,0.15);
+  border: 1px solid rgba(0,214,143,0.25);
+  color: var(--accent);
+  padding: 6px 20px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 42px;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: var(--white);
+  margin-bottom: 14px;
+  margin-top: 36px;
+}
+h3:first-child { margin-top: 0; }
+h4 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+p { margin-bottom: 16px; }
+p:last-child { margin-bottom: 0; }
+
+/* ═══ WARNING BANNER ═══ */
+.warning-banner {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  border: 2px solid #dc2626;
+  border-radius: 16px;
+  padding: 28px 36px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.warning-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.warning-text h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  color: #fff;
+  margin: 0 0 8px;
+}
+.warning-text p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ═══ VIDEO BLOCK ═══ */
+.video-block {
+  max-width: 800px;
+}
+.video-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  background: #06110b;
+  border: 1px solid rgba(0,214,143,0.2);
+}
+.video-frame iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.video-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, #06110b 0%, #0d2318 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.play-btn {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #0a1a12;
+  cursor: pointer;
+}
+.video-overlay p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+
+/* ═══ ICON CARDS (What's Inside) ═══ */
+.icon-cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.icon-card {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.12);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.icon-card:hover {
+  border-color: rgba(0,214,143,0.35);
+  box-shadow: 0 4px 24px rgba(0,214,143,0.08);
+}
+.ic-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: rgba(0,214,143,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+.icon-card h4 { font-size: 18px; color: var(--white); }
+.icon-card p { font-size: 15px; color: rgba(255,255,255,0.55); margin: 0; }
+
+/* ═══ STAT ROW ═══ */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 36px 0;
+}
+.stat-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.15);
+  border-radius: 16px;
+  padding: 28px 16px;
+  text-align: center;
+}
+.stat-box .num {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--accent);
+  display: block;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.stat-box .label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ═══ INFLECTION CARDS ═══ */
+.infl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.infl-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.12);
+  border-radius: 16px;
+  padding: 28px;
+}
+.infl-card .infl-year {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.infl-card h4 { font-size: 17px; color: var(--white); margin-bottom: 8px; }
+.infl-card p { font-size: 14px; color: rgba(255,255,255,0.55); margin: 0; }
+
+/* ═══ JEAN STATS ═══ */
+.jean-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+.jean-stat {
+  background: rgba(0,214,143,0.08);
+  border: 1px solid rgba(0,214,143,0.2);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.jean-stat .num { font-size: 36px; font-weight: 900; color: var(--accent); display: block; margin-bottom: 6px; }
+.jean-stat .label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; }
+
+/* ═══ STEP ROWS (How Working Together Works) ═══ */
+.step-row {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,214,143,0.12);
+  background: var(--card-bg);
+  transition: border-color 0.2s, transform 0.15s;
+}
+.step-row:hover {
+  border-color: rgba(0,214,143,0.3);
+  transform: translateX(4px);
+}
+.step-num {
+  flex-shrink: 0;
+  width: 64px;
+  background: rgba(0,214,143,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--accent);
+}
+.step-content { padding: 20px 24px; flex: 1; }
+.step-content h4 { font-size: 17px; color: var(--white); margin-bottom: 4px; }
+.step-content p { font-size: 14px; color: rgba(255,255,255,0.55); margin: 0; }
+
+/* ═══ LEAK MAP ═══ */
+.leak-section-header {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,214,143,0.15);
+  border-radius: 12px 12px 0 0;
+  padding: 14px 24px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-top: 32px;
+}
+.leak-table-wrap {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.12);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.leak-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.leak-table th {
+  background: rgba(0,0,0,0.4);
+  padding: 12px 18px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.5);
+}
+.leak-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.8);
+  vertical-align: top;
+}
+.leak-table tbody tr:last-child td { border-bottom: none; }
+.leak-table .channel { font-weight: 700; color: var(--white); }
+.leak-table .notes { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.badge-red-sm { background: rgba(220,38,38,0.15); color: #f87171; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.badge-amber { background: rgba(251,191,36,0.15); color: #fbbf24; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.score-red { color: #f87171; font-weight: 800; }
+.score-amber { color: #fbbf24; font-weight: 800; }
+.funnel-flow {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,214,143,0.08);
+  border-radius: 8px;
+  margin: 8px 0;
+}
+.funnel-flow strong { color: var(--accent); }
+.overall-rating {
+  background: rgba(220,38,38,0.1);
+  border: 1px solid rgba(220,38,38,0.3);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 24px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+}
+.overall-rating strong { color: #f87171; }
+
+/* ═══ FUNNEL ECONOMICS TABLE ═══ */
+.econ-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  font-size: 14px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  margin: 32px 0;
+}
+.econ-table thead {
+  background: rgba(0,214,143,0.12);
+}
+.econ-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+}
+.econ-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.8);
+  background: var(--card-bg);
+}
+.econ-table tbody tr:last-child td { border-bottom: none; }
+.econ-table .after { color: var(--accent); font-weight: 700; }
+.econ-table .change { color: var(--blue); font-weight: 800; }
+
+/* ═══ MONEY LEVERS ═══ */
+.lever-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.12);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+.lever-card:hover { border-color: rgba(0,214,143,0.3); }
+.lever-num {
+  display: inline-block;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #0a1a12;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 36px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.lever-card h4 { font-size: 19px; color: var(--white); margin-bottom: 10px; }
+.lever-card p { font-size: 15px; color: rgba(255,255,255,0.65); }
+.lever-impact {
+  background: rgba(0,214,143,0.08);
+  border: 1px solid rgba(0,214,143,0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.lever-impact strong { color: var(--white); }
+
+/* ═══ FUNNEL CASCADE ═══ */
+.cascade-step {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.12);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 16px;
+  position: relative;
+}
+.cascade-step::after {
+  content: '↓';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: rgba(0,214,143,0.4);
+  z-index: 1;
+}
+.cascade-step:last-child::after { display: none; }
+.cascade-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.cascade-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+.cascade-col h5 {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+.cascade-col p { font-size: 13px; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.5; }
+.cascade-col.missing p { color: #f87171; }
+
+/* ═══ COMPETITOR CARDS ═══ */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 32px 0; }
+.comp-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 28px;
+}
+.comp-card.greenpixie {
+  border-color: rgba(0,214,143,0.3);
+  background: rgba(0,214,143,0.06);
+}
+.comp-card .comp-name { font-size: 17px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+.comp-card .comp-funding { font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+.comp-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 0; }
+.comp-adv { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+.comp-adv.gp { background: rgba(0,214,143,0.1); color: var(--accent); }
+.comp-adv.gap { background: rgba(220,38,38,0.1); color: #f87171; }
+
+/* ═══ WEEK ROWS (Sprint Plan) ═══ */
+.week-row {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,214,143,0.12);
+  background: var(--card-bg);
+  transition: border-color 0.2s, transform 0.15s;
+}
+.week-row:hover { border-color: rgba(0,214,143,0.3); transform: translateX(4px); }
+.week-num {
+  flex-shrink: 0;
+  width: 72px;
+  background: rgba(0,214,143,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+  flex-direction: column;
+  gap: 2px;
+}
+.week-num span { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.4); }
+.week-content { padding: 20px 24px; flex: 1; }
+.week-content h4 { font-size: 16px; color: var(--white); margin-bottom: 6px; }
+.week-content p { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+.week-deliverable { font-size: 12px; color: var(--accent); font-weight: 700; margin: 0; }
+
+/* ═══ EMAIL PREVIEW ═══ */
+.email-card {
+  background: #ffffff;
+  color: #1f2937;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.email-header {
+  background: #f3f4f6;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.email-header .pss {
+  display: inline-block;
+  background: #00b574;
+  color: white;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.email-header .field { font-size: 13px; margin-bottom: 4px; }
+.email-header .field strong { font-weight: 700; color: #374151; }
+.email-header .field span { color: #6b7280; }
+.email-body { padding: 24px; font-size: 15px; line-height: 1.7; color: #374151; }
+.email-body p { margin-bottom: 14px; }
+.email-body .ps { font-size: 13px; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 14px; margin-top: 14px; }
+
+/* ═══ BEFORE/AFTER TABLE ═══ */
+.ba-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  font-size: 14px;
+  margin: 32px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.ba-table thead { background: rgba(0,214,143,0.12); }
+.ba-table th { padding: 14px 18px; text-align: left; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); }
+.ba-table th:first-child { color: rgba(255,255,255,0.6); }
+.ba-table td { padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); background: var(--card-bg); color: rgba(255,255,255,0.75); }
+.ba-table tbody tr:last-child td { border-bottom: none; }
+.ba-table .before { color: #f87171; }
+.ba-table .after { color: var(--accent); font-weight: 700; }
+.ba-table .area { font-weight: 700; color: var(--white); }
+
+/* ═══ CASE STUDY ═══ */
+.case-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.15);
+  border-left: 5px solid var(--accent);
+  border-radius: 16px;
+  padding: 36px;
+}
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+.case-metric {
+  background: rgba(0,214,143,0.08);
+  border: 1px solid rgba(0,214,143,0.15);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.case-metric .num { font-size: 30px; font-weight: 900; color: var(--accent); display: block; margin-bottom: 4px; }
+.case-metric .label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ═══ GROWTH LOOPS ═══ */
+.loop-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.12);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 20px;
+}
+.loop-card .loop-num { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; }
+.loop-card h4 { font-size: 20px; color: var(--white); margin-bottom: 12px; }
+.loop-card p { font-size: 15px; color: rgba(255,255,255,0.65); }
+.loop-broken { background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.2); border-radius: 10px; padding: 12px 16px; margin-top: 14px; font-size: 14px; color: #f87171; }
+
+/* ═══ FAQ ═══ */
+.faq-item {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,214,143,0.1);
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 12px;
+}
+.faq-item h4 { font-size: 17px; color: var(--accent); margin-bottom: 10px; font-style: italic; }
+.faq-item p { font-size: 15px; color: rgba(255,255,255,0.7); margin: 0; }
+
+/* ═══ LINKEDIN MESSAGES ═══ */
+.li-msg {
+  background: #f0f2f5;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+.li-msg .li-type { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #0a66c2; margin-bottom: 10px; }
+.li-msg p { font-size: 14px; color: #374151; line-height: 1.6; margin: 0; }
+
+/* ═══ FINAL CTA SECTION ═══ */
+.final-cta {
+  background: linear-gradient(160deg, #0d2318 0%, #061410 100%);
+  padding: 80px 60px;
+  text-align: center;
+  border-top: 1px solid rgba(0,214,143,0.15);
+}
+.final-cta h2 { font-size: 48px; margin-bottom: 20px; }
+.final-cta p { font-size: 19px; color: rgba(255,255,255,0.65); max-width: 580px; margin: 0 auto 40px; }
+.final-cta .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+
+/* ═══ MID-PAGE CTA ═══ */
+.mid-cta {
+  background: rgba(0,214,143,0.06);
+  border: 1px solid rgba(0,214,143,0.2);
+  border-radius: 20px;
+  padding: 40px 48px;
+  text-align: center;
+  margin: 48px 0;
+}
+.mid-cta h3 { font-size: 28px; margin-bottom: 12px; }
+.mid-cta p { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
+.mid-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ═══ CAL.COM EMBED ═══ */
+.cal-container {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 40px;
+  min-height: 600px;
+}
+.cal-container iframe {
+  width: 100%;
+  min-height: 600px;
+  border: none;
+  display: block;
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+  background: #040e08;
+  padding: 32px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 1px solid rgba(0,214,143,0.1);
+}
+footer p { font-size: 12px; color: rgba(255,255,255,0.35); margin: 0; }
+footer .footer-accent { color: var(--accent); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1100px) {
+  .side-nav { display: none; }
+  .main { margin-left: 0; }
+  .hero, .section, .final-cta, footer { padding-left: 28px; padding-right: 28px; }
+  .hero h1 { font-size: 40px; }
+  h2 { font-size: 32px; }
+  .infl-grid, .cascade-row, .jean-stats, .case-metrics { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hero h1 { font-size: 32px; }
+  .comp-grid, .stat-row { grid-template-columns: 1fr 1fr; }
+  .ba-table { font-size: 12px; }
+  .ba-table th, .ba-table td { padding: 10px 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDE NAV -->
+<nav class="side-nav" id="sideNav">
+  <div class="side-nav-logo">
+    <div class="brand">GreenPixie</div>
+    <div class="sub">Prepared for John Ridd, CEO</div>
+  </div>
+
+  <div class="nav-section-title">Overview</div>
+  <a class="nav-item active" href="#hero" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Cover</span>
+  </a>
+  <a class="nav-item" href="#video" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Personal Note</span>
+  </a>
+  <a class="nav-item" href="#warning" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Warning</span>
+  </a>
+  <a class="nav-item" href="#delivers" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">What's Inside</span>
+  </a>
+  <a class="nav-item" href="#why-now" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Why Now</span>
+  </a>
+
+  <div class="nav-section-title">Audit</div>
+  <a class="nav-item" href="#leak-map" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Leak Map</span>
+  </a>
+  <a class="nav-item" href="#economics" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Funnel Economics</span>
+  </a>
+  <a class="nav-item" href="#levers" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Money Levers</span>
+  </a>
+
+  <div class="nav-section-title">Strategy</div>
+  <a class="nav-item" href="#cascade" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Funnel Cascade</span>
+  </a>
+  <a class="nav-item" href="#competitors" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Competitors</span>
+  </a>
+  <a class="nav-item" href="#sprint" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">90-Day Sprint</span>
+  </a>
+  <a class="nav-item" href="#emails" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Email Sequences</span>
+  </a>
+
+  <div class="nav-section-title">Proof</div>
+  <a class="nav-item" href="#before-after" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Before / After</span>
+  </a>
+  <a class="nav-item" href="#case-study" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Case Study</span>
+  </a>
+  <a class="nav-item" href="#loops" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Growth Loops</span>
+  </a>
+  <a class="nav-item" href="#faq" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">John's Questions</span>
+  </a>
+
+  <div class="nav-section-title">Next Steps</div>
+  <a class="nav-item" href="#about" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">About Jean</span>
+  </a>
+  <a class="nav-item" href="#paths" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Two Ways Forward</span>
+  </a>
+  <a class="nav-item" href="#linkedin" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">LinkedIn Messages</span>
+  </a>
+  <a class="nav-item" href="#book" onclick="setActive(this)">
+    <span class="nav-dot"></span>
+    <span class="nav-label">Book a Call</span>
+  </a>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- CARD 1: HERO -->
+<section class="hero" id="hero">
+  <div class="hero-for-tag">Personalised for GreenPixie</div>
+  <h1>John Ridd's Special Package<br><span>— GreenPixie</span></h1>
+  <p class="hero-subtitle">A complete acquisition audit, five money levers, a 90-day sprint plan, and two email sequences. Built specifically for GreenPixie's situation right now.</p>
+  <div class="hero-wild-goal">
+    <div class="wg-label">Wild Goal</div>
+    <p>20 signed enterprise cloud carbon deals in 12 months — before the EU Corporate Sustainability Reporting Directive deadline locks in vendor choices across 50,000 Flexera-connected organisations.</p>
+  </div>
+  <div class="hero-cta-row">
+    <a href="#book" class="btn-primary">Book 20 Minutes</a>
+    <a href="#leak-map" class="btn-ghost">See the Audit</a>
+  </div>
+</section>
+
+<!-- CARD 2: VIDEO -->
+<section class="section section-alt" id="video">
+  <div class="tag">Card 02</div>
+  <h2>A Personal Note From Jean</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:32px;">12 minutes of research on your specific situation. Watch before reading the rest.</p>
+  <div class="video-block">
+    <div class="video-frame">
+      <iframe src="VIDEO_URL_GOES_HERE" allowfullscreen></iframe>
+      <div class="video-overlay">
+        <div class="play-btn">▶</div>
+        <p>Jean Mundabi Fala — MDB Growth Capital</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 3: WARNING -->
+<section class="section" id="warning">
+  <div class="tag">Card 03</div>
+  <h2>Warning: The Window Is Closing</h2>
+  <div class="warning-banner">
+    <div class="warning-icon">⚠️</div>
+    <div class="warning-text">
+      <h3>Climatiq raised $11.6M Series A — June 2025</h3>
+      <p>That money is funding paid acquisition, developer community investment, and content on every cloud carbon keyword where GreenPixie should be winning. A FinOps director in Frankfurt searching for "cloud carbon measurement" right now lands on Climatiq. Not GreenPixie.</p>
+    </div>
+  </div>
+  <p style="color:rgba(255,255,255,0.7);">GreenPixie has the better product. ISO-14064 verified methodology. Usage-based calculation, not spend-based. Multi-cloud coverage across AWS, Azure, and GCP in a single view. Climatiq has none of that.</p>
+  <p style="color:rgba(255,255,255,0.7);">The product gap favours GreenPixie. The distribution gap does not. This package is about closing that gap before the window does.</p>
+  <p style="color:rgba(255,255,255,0.7);">Every enterprise cloud buyer choosing their vendor this quarter is a deal that compounds for years. EU Corporate Sustainability Reporting Directive compliance is not a future event. Large companies began reporting 2024 financials in 2025. They are selecting vendors now.</p>
+</section>
+
+<!-- CARD 4: WHAT THIS DELIVERS -->
+<section class="section section-alt" id="delivers">
+  <div class="tag">Card 04 — 05</div>
+  <h2>What This Package Delivers</h2>
+  <div class="icon-cards">
+    <div class="icon-card">
+      <div class="ic-icon">🔍</div>
+      <div>
+        <h4>The AAA Acquisition Diagnostic</h4>
+        <p>A complete Attraction, Alignment, and Activation audit of GreenPixie's current funnel. Every channel scored. Every leak mapped with a severity rating.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">🗺️</div>
+      <div>
+        <h4>The Leak Map</h4>
+        <p>A breakdown of where GreenPixie is losing qualified prospects — from search invisibility to the contact form dead end. Scored by leak severity from 1 to 10.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">📊</div>
+      <div>
+        <h4>Funnel Economics Model</h4>
+        <p>What is entering, converting, and falling out at each stage — and what the numbers look like when the top five money levers are applied.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">💰</div>
+      <div>
+        <h4>Money Levers Priority Matrix</h4>
+        <p>The five highest-return interventions for GreenPixie right now, ranked by revenue impact and time to implement. Each one actionable in 30 days or less.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">📅</div>
+      <div>
+        <h4>The 90-Day Sprint Plan</h4>
+        <p>A week-by-week roadmap from day one to day 90. Built for a company running without a marketing team. Structured so a Founding Growth Marketer can inherit it on arrival.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">✉️</div>
+      <div>
+        <h4>Two Email Sequences (with PSS Scores)</h4>
+        <p>Email 1 uses the Friction angle (search gap vs Climatiq), PSS 74/100. Email 2 uses the Trigger angle (EU Corporate Sustainability Reporting Directive deadlines), PSS 71/100. Both ready to deploy.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">🔄</div>
+      <div>
+        <h4>Three Growth Feedback Loops</h4>
+        <p>Cloud-carbon-specific loops showing how GreenPixie can generate compounding pipeline without John Ridd personally driving every conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 6: WHY NOW -->
+<section class="section" id="why-now">
+  <div class="tag">Card 06</div>
+  <h2>Why GreenPixie, and Why Right Now</h2>
+  <p style="color:rgba(255,255,255,0.65); margin-bottom:32px;">Four things happened at GreenPixie in the last 12 months. Each one alone is interesting. Together, they signal a business at a genuine inflection point.</p>
+  <div class="infl-grid">
+    <div class="infl-card">
+      <div class="infl-year">May 2025</div>
+      <h4>The Flexera OEM Deal</h4>
+      <p>Flexera signed an OEM agreement embedding GreenPixie sustainability data inside Flexera One. Flexera serves 50,000-plus customer organisations. GreenPixie now has access to one of the largest enterprise IT distribution channels in the market. This is passive distribution today. It does not have to stay that way.</p>
+    </div>
+    <div class="infl-card">
+      <div class="infl-year">2025</div>
+      <h4>EU CSRD Reporting Went Live</h4>
+      <p>Large EU companies began reporting 2024 financials under the Corporate Sustainability Reporting Directive. Companies with 250-plus employees and €40M in turnover must disclose Scope 1, 2, and 3 greenhouse gas emissions. Cloud infrastructure is a material Scope 2 and Scope 3 category. These companies need GreenPixie's data right now.</p>
+    </div>
+    <div class="infl-card">
+      <div class="infl-year">June 2025</div>
+      <h4>Climatiq's $11.6M Series A</h4>
+      <p>Climatiq raised institutional capital. Their go-to-market investment will accelerate in every channel GreenPixie is absent from. The product gap in GreenPixie's favour will not protect market share if the distribution gap widens further.</p>
+    </div>
+    <div class="infl-card">
+      <div class="infl-year">2026</div>
+      <h4>The Founding Growth Marketer Hire</h4>
+      <p>GreenPixie is hiring its first dedicated marketing person. This is the zero-to-one signal. John Ridd has been the entire commercial engine. The new hire will need a brief, a system, and a plan. This package is the starting point for all three.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 7-8: JEAN + HOW IT WORKS -->
+<section class="section section-alt" id="jean">
+  <div class="tag">Card 07</div>
+  <h2>Who Jean Is</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">Three facts. Verified. Specific.</p>
+  <div class="jean-stats">
+    <div class="jean-stat">
+      <span class="num">£2.6M</span>
+      <span class="label">Google Ads spend managed across financial services and retail</span>
+    </div>
+    <div class="jean-stat">
+      <span class="num">16x</span>
+      <span class="label">Paid acquisition scaled from £50K to £800K monthly in 7 months</span>
+    </div>
+    <div class="jean-stat">
+      <span class="num">14</span>
+      <span class="label">B2B outreach packages built in the last 90 days — all research-backed</span>
+    </div>
+  </div>
+  <p style="color:rgba(255,255,255,0.7);">Jean runs MDB Growth Capital. MDB installs permanent revenue systems directly onto a client's balance sheet — replacing founder-led growth with documented, repeatable acquisition that a team can own and operate.</p>
+  <p style="color:rgba(255,255,255,0.7);">MDB is not a marketing agency. Agencies rent you their systems. MDB builds systems that belong to you.</p>
+</section>
+
+<!-- CARD 8: HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="tag">Card 08</div>
+  <h2>How Working Together Works</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:32px;">GreenPixie is a zero-to-one build. No marketing team. No existing paid media. No outbound cadence. This is the starting point most consultants avoid. It is the starting point MDB is built for.</p>
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h4>Funnel Baseline — Days 1 to 5</h4>
+      <p>Walk through every finding in this package with John. Confirm what is already known internally vs what the research surfaced. Lock the priority order.</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h4>Quick Wins First — Days 6 to 14</h4>
+      <p>Replace the contact form dead end with a Cal.com embed. Rewrite call-to-action copy. Audit the GreenOps Academy registrant list. These three changes take less than a week.</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h4>Outbound Architecture — Days 15 to 30</h4>
+      <p>Build the first 100-account outbound target list. EU enterprises, cloud-heavy sectors, active CSRD reporters. Write and launch the two-email sequence.</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h4>Academy List Activation — Days 20 to 35</h4>
+      <p>Write the five-email nurture sequence triggered on GreenOps Academy course completion. Launch to all completers. This is the highest-intent list GreenPixie has ever had access to.</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <h4>Flexera Partnership Activation — Days 30 to 50</h4>
+      <p>Draft and submit the co-marketing proposal to Flexera. A joint webinar. A co-branded guide. A request for warm account data. Turning a passive OEM deal into an active pipeline channel.</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">6</div>
+    <div class="step-content">
+      <h4>Case Study and Proof Assets — Days 35 to 60</h4>
+      <p>Draft the first outcome-driven case study from an existing customer (Mastercard, NHS, or NTT Data). Publish as a website page and a portable PDF.</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">7</div>
+    <div class="step-content">
+      <h4>Measure and Scale — Days 61 to 90</h4>
+      <p>Review outbound results. Calculate reply rate, booking rate, and pipeline generated. Launch the second 100-account wave. Build competitive comparison pages: GreenPixie vs Climatiq and GreenPixie vs CloudZero.</p>
+    </div>
+  </div>
+  <div class="mid-cta">
+    <h3>Ready to start?</h3>
+    <p>20 minutes. No pitch. Specific to GreenPixie's situation.</p>
+    <div class="mid-cta-btns">
+      <a href="https://cal.com/jean-m-8f4kbr/15min" class="btn-primary" target="_blank">Book 20 Minutes</a>
+      <a href="mailto:jean@mdbgrowthcapital.com" class="btn-ghost">Email Jean</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 10: LEAK MAP -->
+<section class="section section-alt" id="leak-map">
+  <div class="tag">Card 10</div>
+  <h2>The Leak Map</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:32px;">The full acquisition funnel audit — scored by leak severity from 1 (minor) to 10 (critical).</p>
+
+  <div class="leak-section-header">AWARENESS LAYER</div>
+  <div class="leak-table-wrap">
+    <table class="leak-table">
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Status</th>
+          <th>Leak Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="channel">Organic search</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">9/10</td>
+          <td class="notes">Not ranking for "cloud carbon measurement", "GreenOps platform", or "CSRD cloud tool". Climatiq appears. GreenPixie does not.</td>
+        </tr>
+        <tr>
+          <td class="channel">LinkedIn (John)</td>
+          <td><span class="badge-amber">🟡 AMBER</span></td>
+          <td class="score-amber">5/10</td>
+          <td class="notes">Active but no conversion path. Posts generate views. No CTA, no email capture, no lead magnet attached.</td>
+        </tr>
+        <tr>
+          <td class="channel">Paid ads</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">10/10</td>
+          <td class="notes">Zero. No Meta. No LinkedIn ads. No Google. Full dependency on organic reach.</td>
+        </tr>
+        <tr>
+          <td class="channel">Outbound</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">10/10</td>
+          <td class="notes">No structured cold email. No SDR. No sequencing. Founder-only.</td>
+        </tr>
+        <tr>
+          <td class="channel">Partnerships</td>
+          <td><span class="badge-amber">🟡 AMBER</span></td>
+          <td class="score-amber">6/10</td>
+          <td class="notes">Flexera + Anodot partnerships exist but are passive. GreenPixie does not control the pipeline they generate.</td>
+        </tr>
+        <tr>
+          <td class="channel">AWS Marketplace</td>
+          <td><span class="badge-amber">🟡 AMBER</span></td>
+          <td class="score-amber">6/10</td>
+          <td class="notes">Listing exists but no evidence of active promotion, review optimisation, or category claim.</td>
+        </tr>
+        <tr>
+          <td class="channel">GreenOps Academy</td>
+          <td><span class="badge-amber">🟡 AMBER</span></td>
+          <td class="score-amber">7/10</td>
+          <td class="notes">Email capture exists on signup. List is not being worked. High-intent leads going cold.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="funnel-flow">↓ ~100 qualified prospects reach GreenPixie per month (estimate)</div>
+
+  <div class="leak-section-header">ALIGNMENT LAYER</div>
+  <div class="leak-table-wrap">
+    <table class="leak-table">
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Status</th>
+          <th>Leak Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="channel">Homepage headline</td>
+          <td><span class="badge-amber">🟡 AMBER</span></td>
+          <td class="score-amber">5/10</td>
+          <td class="notes">"Sustainability Data For Smarter Decisions Across Cloud, AI and Beyond" — broad, outcomes-first but no persona signal. Does not say who this is for.</td>
+        </tr>
+        <tr>
+          <td class="channel">Value proposition</td>
+          <td><span class="badge-amber">🟡 AMBER</span></td>
+          <td class="score-amber">6/10</td>
+          <td class="notes">ISO verification is mentioned but not headlined. The strongest differentiator (usage-based vs spend-based) is buried in product copy, not above the fold.</td>
+        </tr>
+        <tr>
+          <td class="channel">Competitor differentiation</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">9/10</td>
+          <td class="notes">No "why GreenPixie vs Climatiq" page. No battlecard. No comparison. Every informed buyer asks this question. It is not answered anywhere.</td>
+        </tr>
+        <tr>
+          <td class="channel">Case studies</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">9/10</td>
+          <td class="notes">Mastercard, NTT Data, NHS logos appear but no published case studies with named outcomes. Social proof is decorative, not persuasive.</td>
+        </tr>
+        <tr>
+          <td class="channel">Lead nurture</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">10/10</td>
+          <td class="notes">No email sequences for non-ready buyers. If a FinOps director visits and is not ready to book, GreenPixie has no way to follow up.</td>
+        </tr>
+        <tr>
+          <td class="channel">Lead magnets</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">10/10</td>
+          <td class="notes">Zero gated assets across the entire site. No report. No calculator. No guide. Email capture only via Academy signup.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="funnel-flow">↓ ~15 to 20 prospects reach the contact form</div>
+
+  <div class="leak-section-header">ACTIVATION LAYER</div>
+  <div class="leak-table-wrap">
+    <table class="leak-table">
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Status</th>
+          <th>Leak Score</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="channel">Contact form CTA</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">8/10</td>
+          <td class="notes">Submit button says "Submit." Page CTA says "Become a leader in cloud sustainability." Neither sells the call. No benefit attached to booking.</td>
+        </tr>
+        <tr>
+          <td class="channel">Calendar booking</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">9/10</td>
+          <td class="notes">No inline calendar. Prospects submit a form and wait for an email. Every additional step between interest and meeting reduces show rate.</td>
+        </tr>
+        <tr>
+          <td class="channel">Demo flow</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">9/10</td>
+          <td class="notes">No dedicated demo page. No product tour. No sandbox. No self-serve option. Entry is "submit a form and we'll call you."</td>
+        </tr>
+        <tr>
+          <td class="channel">Post-submit nurture</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">9/10</td>
+          <td class="notes">No documented follow-up sequence after form submission. Prospect drops into John's inbox. Response time, follow-up cadence, and close sequence are entirely manual.</td>
+        </tr>
+        <tr>
+          <td class="channel">Competitive proof at decision</td>
+          <td><span class="badge-red-sm">🔴 RED</span></td>
+          <td class="score-red">8/10</td>
+          <td class="notes">No ROI calculator. No outcome case study. The strongest claim GreenPixie has (same output for 40% less energy) is in a podcast, not on the website.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="funnel-flow">↓ ~3 to 5 deals close per quarter (unverified estimate)<br><strong>REVENUE</strong></div>
+  <div class="overall-rating">
+    <strong>Overall Funnel Rating: CRITICAL.</strong> Attraction depends almost entirely on one person. Alignment lacks the proof assets that technical buyers require. Activation has unnecessary friction at every step. GreenPixie has built a Formula 1 product inside a funnel with no road.
+  </div>
+</section>
+
+<!-- CARD 11: FUNNEL ECONOMICS -->
+<section class="section" id="economics">
+  <div class="tag">Card 11</div>
+  <h2>Funnel Economics</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:8px;">What the numbers look like today. What they look like after the top five money levers are applied.</p>
+  <table class="econ-table">
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th>Current State</th>
+        <th>After Money Levers</th>
+        <th>Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monthly qualified visitors</td>
+        <td>~300 estimated</td>
+        <td class="after">~300 (same traffic)</td>
+        <td class="change">Baseline held</td>
+      </tr>
+      <tr>
+        <td>Visitors reaching contact form</td>
+        <td>~15 to 20 (5 to 7%)</td>
+        <td class="after">~45 to 60 (15 to 20% with Academy nurture)</td>
+        <td class="change">3x improvement</td>
+      </tr>
+      <tr>
+        <td>Contact form to booked meeting</td>
+        <td>~15% (form + wait model)</td>
+        <td class="after">~40% (inline calendar embed)</td>
+        <td class="change">2.7x improvement</td>
+      </tr>
+      <tr>
+        <td>Booked meetings per month</td>
+        <td>~3</td>
+        <td class="after">~18 to 24</td>
+        <td class="change">6x to 8x improvement</td>
+      </tr>
+      <tr>
+        <td>Close rate (estimated)</td>
+        <td>~30%</td>
+        <td class="after">~40% (with case study + proof assets)</td>
+        <td class="change">1.3x improvement</td>
+      </tr>
+      <tr>
+        <td>Enterprise deals closed per month</td>
+        <td>~1</td>
+        <td class="after">~7 to 10</td>
+        <td class="change">7x to 10x improvement</td>
+      </tr>
+      <tr>
+        <td>Academy list activation</td>
+        <td>0 bookings from list</td>
+        <td class="after">6 to 10 bookings/month (5% of 200 registrants)</td>
+        <td class="change">Net new channel</td>
+      </tr>
+      <tr>
+        <td>Outbound (new)</td>
+        <td>0</td>
+        <td class="after">5 to 10 qualified replies/month (5% of 100 contacts)</td>
+        <td class="change">Net new channel</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:rgba(255,255,255,0.55); font-size:15px;"><strong style="color:rgba(255,255,255,0.8);">Revenue gap:</strong> GreenPixie's current funnel is converting at a fraction of what its audience size and product quality justify. The gap is not the product. It is the system between the product and the buyer.</p>
+</section>
+
+<!-- CARD 12: MONEY LEVERS -->
+<section class="section section-alt" id="levers">
+  <div class="tag">Card 12</div>
+  <h2>Top 5 Money Levers</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:36px;">The five interventions with the highest revenue return for GreenPixie right now. Ordered by impact per unit of time and resource.</p>
+
+  <div class="lever-card">
+    <div class="lever-num">1</div>
+    <h4>Activate the GreenOps Academy Email List</h4>
+    <p>GreenOps Academy captures work email addresses at course registration. Every person who signed up is a self-identified cloud sustainability professional. They are the buyers or internal champions for GPX Data. No post-registration nurture sequence exists. The list is warm, consented, and completely idle.</p>
+    <p><strong style="color:var(--white);">Fix:</strong> A five-email sequence triggered on course completion. Email 1 on completion day links the digital badge and introduces GPX Data as the practitioner tool. Email 5 on day 21 sends a direct booking call to action.</p>
+    <div class="lever-impact"><strong>Revenue impact:</strong> 5% conversion of 200 Academy registrants produces 10 qualified enterprise conversations. More than GreenPixie likely generates in a quarter today.</div>
+  </div>
+
+  <div class="lever-card">
+    <div class="lever-num">2</div>
+    <h4>Replace the Contact Form Dead End with a Calendar Embed</h4>
+    <p>The contact page currently asks prospects to submit a form and wait for an email. Every additional step between expressed interest and booked meeting loses prospects. An inline Cal.com embed that lets a prospect book immediately is a two-hour implementation with a 30 to 50% conversion rate improvement.</p>
+    <p><strong style="color:var(--white);">Fix:</strong> Embed Cal.com beneath the contact form. Add a second call to action on the GPX Data page: "Book a 20-minute cloud emissions assessment." Rewrite the button from "Submit" to "Show me where my cloud estate is leaking."</p>
+    <div class="lever-impact"><strong>Revenue impact:</strong> An additional 2 to 3 discovery calls per month from existing traffic, with zero additional spend.</div>
+  </div>
+
+  <div class="lever-card">
+    <div class="lever-num">3</div>
+    <h4>Turn the Flexera Partnership into an Active Pipeline Channel</h4>
+    <p>The Flexera OEM agreement puts GreenPixie data in front of 50,000-plus organisations. Right now it is passive distribution. GreenPixie does not control how Flexera presents the data, which customers see it, or whether it converts to direct pipeline.</p>
+    <p><strong style="color:var(--white);">Fix:</strong> Negotiate a joint webinar with Flexera on CSRD compliance. Request a list of Flexera customers who have engaged with the emissions data feature. Build a dedicated landing page for Flexera-referred traffic. Build an outbound sequence targeting FinOps leads at Flexera customer organisations.</p>
+    <div class="lever-impact"><strong>Revenue impact:</strong> A 0.1% conversion of Flexera's customer base is 50 new enterprise customers. This is the fastest path to enterprise pipeline GreenPixie has ever had access to.</div>
+  </div>
+
+  <div class="lever-card">
+    <div class="lever-num">4</div>
+    <h4>Publish One Outcome-Driven Case Study with a Named Customer</h4>
+    <p>Mastercard, NTT Data, and NHS logos appear on the homepage. There are no published case studies with named outcomes. A logo says "someone trusted us." A case study says "here is what changed when they did."</p>
+    <p><strong style="color:var(--white);">Fix:</strong> Structure one case study around three numbers: cloud estate size, emissions identified, and emissions reduced. Publish as a website page and a portable document. Use in every bottom-of-funnel conversation.</p>
+    <div class="lever-impact"><strong>Revenue impact:</strong> A single credible enterprise case study with real numbers typically increases bottom-of-funnel conversion by 20 to 40% and shortens the sales cycle by removing the "do you have examples?" objection.</div>
+  </div>
+
+  <div class="lever-card">
+    <div class="lever-num">5</div>
+    <h4>Build a Structured Cold Outbound System for CSRD Accounts</h4>
+    <p>Every enterprise GreenPixie has won came through founder relationships, partnerships, or inbound discovery. There is no structured outbound system. John Ridd cannot scale himself. The Founding Growth Marketer hire is the right call — but outbound cannot wait for an onboarding period.</p>
+    <p><strong style="color:var(--white);">Fix:</strong> Build a 100 to 200 account target list. EU enterprises, over 250 employees, cloud-heavy industries (financial services, healthcare, technology, media), with public net zero commitments. Two emails per account. Friction angle first. Trigger angle as follow-up.</p>
+    <div class="lever-impact"><strong>Revenue impact:</strong> At 5% reply rate from 200 contacts, GreenPixie generates 10 qualified conversations per month without John Ridd making a single introduction.</div>
+  </div>
+</section>
+
+<!-- CARD 13: FUNNEL CASCADE -->
+<section class="section" id="cascade">
+  <div class="tag">Card 13</div>
+  <h2>The Funnel Cascade</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:36px;">What the cloud sustainability buyer journey actually looks like — and where GreenPixie sits at each stage.</p>
+
+  <div class="cascade-step">
+    <div class="cascade-label">TOP OF FUNNEL — ATTRACTION</div>
+    <h4>Who Finds You and How</h4>
+    <div class="cascade-row">
+      <div class="cascade-col">
+        <h5>What's happening today</h5>
+        <p>A FinOps director reads a LinkedIn post about CSRD. A sustainability officer at a UK bank searches "cloud carbon measurement." A staff engineer opens GreenOps Academy. All three exist. All three are actively looking.</p>
+      </div>
+      <div class="cascade-col">
+        <h5>What we install</h5>
+        <p>Structured cold outbound targeting 100 to 200 EU enterprise accounts per month. GreenOps Academy nurture sequence converting course completers into GPX Data conversations. Keyword content putting GreenPixie on page one for "cloud carbon measurement" and "CSRD cloud tool."</p>
+      </div>
+      <div class="cascade-col missing">
+        <h5>What's missing today</h5>
+        <p>Search ranking for every commercial keyword. Any paid media. Any structured outbound. Any lead magnet. John Ridd is the entire top of funnel.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cascade-step">
+    <div class="cascade-label">MIDDLE OF FUNNEL — ALIGNMENT</div>
+    <h4>Why GreenPixie Over Everyone Else</h4>
+    <div class="cascade-row">
+      <div class="cascade-col">
+        <h5>What's happening today</h5>
+        <p>A prospect arrives at greenpixie.com. They do not find a comparison against Climatiq. They do not find a case study with numbers. They are not ready to book. They leave.</p>
+      </div>
+      <div class="cascade-col">
+        <h5>What we install</h5>
+        <p>A five-email lead nurture sequence. A competitive comparison page answering "GreenPixie vs Climatiq." An outcome-driven case study with named metrics. A homepage headline rewrite that speaks to a specific buyer.</p>
+      </div>
+      <div class="cascade-col missing">
+        <h5>What's missing today</h5>
+        <p>Any nurture for non-ready buyers. Any competitive proof asset. Any published case study. Any lead magnet.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cascade-step">
+    <div class="cascade-label">BOTTOM OF FUNNEL — ACTIVATION</div>
+    <h4>Getting the Call Booked and the Deal Closed</h4>
+    <div class="cascade-row">
+      <div class="cascade-col">
+        <h5>What's happening today</h5>
+        <p>A prospect clicks the contact CTA and lands on a "Submit" form. They submit. They wait for John's email. They agree on a time. Three steps that each lose people.</p>
+      </div>
+      <div class="cascade-col">
+        <h5>What we install</h5>
+        <p>Inline Cal.com embed on the contact page and GPX Data page. Rewritten CTA: "Book a 20-minute cloud emissions assessment — we'll show you where your cloud estate is leaking carbon and cost." A bottom-of-funnel email sequence delivering the case study before the final meeting.</p>
+      </div>
+      <div class="cascade-col missing">
+        <h5>What's missing today</h5>
+        <p>A calendar embed. A CTA that sells the outcome. A demo page. A post-submission nurture sequence. Any proof asset at the decision stage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cascade-step">
+    <div class="cascade-label">SALE</div>
+    <h4>What Happens After the Deal Closes</h4>
+    <div class="cascade-row">
+      <div class="cascade-col">
+        <h5>What's happening today</h5>
+        <p>Unknown. No documented sales playbook, no competitive battlecard for the close call, and no handover structure for when the Founding Growth Marketer inherits pipeline conversations.</p>
+      </div>
+      <div class="cascade-col">
+        <h5>What we install</h5>
+        <p>A one-page sales playbook covering the top five objections with verified responses. A close conversation checklist. A case study leave-behind formatted for the buying committee.</p>
+      </div>
+      <div class="cascade-col missing">
+        <h5>What's missing today</h5>
+        <p>Any documented close process. Any objection handling. Any handover brief for the new Founding Growth Marketer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 14: COMPETITORS -->
+<section class="section section-alt" id="competitors">
+  <div class="tag">Card 14</div>
+  <h2>Three Competitors Compared</h2>
+  <div class="comp-grid">
+    <div class="comp-card greenpixie">
+      <div class="comp-name">GreenPixie</div>
+      <div class="comp-funding" style="color:var(--accent);">ISO-14064 Verified — Pre-Series A</div>
+      <p>Usage-based cloud emissions calculation (not spend-based). Multi-cloud coverage: AWS, Azure, GCP in a single view. The most rigorous methodology in the market for CSRD audit-readiness.</p>
+      <div class="comp-adv gp">Advantage: Accuracy, ISO verification, multi-cloud, audit-ready data</div>
+      <div class="comp-adv gap">Gap: Search visibility, content, paid distribution</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Climatiq</div>
+      <div class="comp-funding">$11.6M Series A — June 2025</div>
+      <p>API-first platform with 190,000-plus emission factors. Developer-led. Salesforce Net Zero Cloud partnership. Appears on page one for every commercial cloud carbon keyword.</p>
+      <div class="comp-adv gap">Their gap: Spend-based proxies (not usage data). Not independently verified. Generalist database, not cloud-specific.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">CloudZero</div>
+      <div class="comp-funding">Established — FinOps Foundation presence</div>
+      <p>Cloud cost intelligence platform. Carbon tracking is an add-on to their core cost management product. Pricing at approximately 1 to 2% of managed cloud spend per month.</p>
+      <div class="comp-adv gap">Their gap: Carbon data not independently verified. Cost-first positioning. Unverified carbon numbers are a liability for CSRD compliance buyers.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Microsoft Sustainability Manager</div>
+      <div class="comp-funding">Enterprise relationship ecosystem</div>
+      <p>Microsoft's enterprise sustainability tracking product. Cloud is one component. Easy procurement for existing Microsoft customers.</p>
+      <div class="comp-adv gap">Their gap: Microsoft-only — cannot report AWS or GCP usage. Spend-based proxies for cloud. Incomplete picture for any multi-cloud enterprise.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 15: SPRINT PLAN -->
+<section class="section" id="sprint">
+  <div class="tag">Card 15</div>
+  <h2>The 90-Day Sprint Plan</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:32px;">A week-by-week roadmap from zero to five qualified enterprise conversations per month.</p>
+
+  <div class="week-row">
+    <div class="week-num">1-2<span>weeks</span></div>
+    <div class="week-content">
+      <h4>Fix the Conversion Floor</h4>
+      <p>Replace the contact form dead end with a Cal.com calendar embed. Rewrite the CTA copy. Audit the GreenOps Academy registrant list — confirm list size, registration dates, and course completion rates.</p>
+      <p class="week-deliverable">Deliverable: Calendar booking live. Academy list size confirmed. Keyword gap documented.</p>
+    </div>
+  </div>
+  <div class="week-row">
+    <div class="week-num">3-4<span>weeks</span></div>
+    <div class="week-content">
+      <h4>Build the Outbound List and the Academy Nurture</h4>
+      <p>Build the first 100-account outbound target list: EU enterprises, cloud-heavy sectors, active CSRD reporters. Draft the five-email GreenOps Academy nurture sequence. Trigger on course completion. Begin the case study brief with the most willing existing customer.</p>
+      <p class="week-deliverable">Deliverable: 100-account list built. Academy nurture sequence written. Case study brief sent.</p>
+    </div>
+  </div>
+  <div class="week-row">
+    <div class="week-num">5-6<span>weeks</span></div>
+    <div class="week-content">
+      <h4>Launch Outbound and Academy Sequence</h4>
+      <p>Launch the structured outbound sequence to the first 50 accounts. Two emails per account. Friction angle first (search gap vs Climatiq). Trigger angle as follow-up (CSRD deadline). Send the Academy nurture sequence to all historical completers.</p>
+      <p class="week-deliverable">Deliverable: 50 outbound contacts reached. Academy sequence live. First outbound replies in inbox.</p>
+    </div>
+  </div>
+  <div class="week-row">
+    <div class="week-num">7-8<span>weeks</span></div>
+    <div class="week-content">
+      <h4>Publish Case Study and Submit Flexera Co-Marketing Proposal</h4>
+      <p>Publish the first outcome-driven case study. Submit the co-marketing proposal to Flexera: a joint webinar on CSRD compliance, a co-branded guide, and a request for warm account data.</p>
+      <p class="week-deliverable">Deliverable: Case study live. Flexera proposal submitted. Academy sequence open rates reviewed.</p>
+    </div>
+  </div>
+  <div class="week-row">
+    <div class="week-num">9-10<span>weeks</span></div>
+    <div class="week-content">
+      <h4>Review, Optimise, and Scale</h4>
+      <p>Calculate outbound reply rate, booking rate, and pipeline generated from the first 50 accounts. Identify which angle performed better. Launch the second 100-account wave using the better-performing angle.</p>
+      <p class="week-deliverable">Deliverable: Second outbound wave launched. Flexera co-marketing live or in negotiation.</p>
+    </div>
+  </div>
+  <div class="week-row">
+    <div class="week-num">11-12<span>weeks</span></div>
+    <div class="week-content">
+      <h4>Build Competitive Proof and Measure</h4>
+      <p>Build the competitive comparison pages on the GreenPixie website: "GreenPixie vs Climatiq" and "GreenPixie vs CloudZero." Review Academy sequence performance. Produce the 90-day pipeline report.</p>
+      <p class="week-deliverable">Target by Day 90: 5 qualified enterprise conversations per month — without John Ridd personally generating every one of them.</p>
+    </div>
+  </div>
+
+  <div class="mid-cta">
+    <h3>The compliance window is live now.</h3>
+    <p>Vendor choices are being made this quarter. GreenPixie's product is ready. The pipeline system is not. That is what this 90 days fixes.</p>
+    <div class="mid-cta-btns">
+      <a href="https://cal.com/jean-m-8f4kbr/15min" class="btn-primary" target="_blank">Book 20 Minutes</a>
+      <a href="mailto:jean@mdbgrowthcapital.com" class="btn-ghost">Email Jean</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 16: EMAIL SEQUENCES -->
+<section class="section section-alt" id="emails">
+  <div class="tag">Card 16</div>
+  <h2>The Email Sequences</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:36px;">Two emails. Two angles. Both ready to deploy.</p>
+
+  <div class="email-card">
+    <div class="email-header">
+      <span class="pss">PSS: 74 / 100 — Friction Angle</span>
+      <div class="field"><strong>Subject:</strong> <span>GreenPixie's ISO cert vs Climatiq's search ranking</span></div>
+      <div class="field"><strong>Preheader:</strong> <span>Something specific I noticed while auditing your acquisition funnel this week.</span></div>
+    </div>
+    <div class="email-body">
+      <p>John — GreenPixie has ISO-14064 verified cloud emissions data. Climatiq does not.</p>
+      <p>But search "cloud carbon measurement" right now and Climatiq appears on page one. GreenPixie does not.</p>
+      <p>That gap is not a product problem. It is a distribution problem.</p>
+      <p>I mapped where Climatiq and CloudZero are finding enterprise customers — the channels they are using, the content they are ranking for, and where GreenPixie is absent. With Corporate Sustainability Reporting Directive reporting live for large EU companies, the enterprises most likely to buy GreenPixie are actively searching for a vendor this quarter.</p>
+      <p>Want me to send over the acquisition map?</p>
+      <p>Jean Mundabi Fala<br>MDB Growth Capital</p>
+      <p class="ps">PS: Your GreenOps Academy registrant list is one of the highest-intent audiences GreenPixie has ever had access to. There is no evidence it is being converted into GPX Data pipeline. That is the first thing I would fix.</p>
+    </div>
+  </div>
+
+  <div class="email-card">
+    <div class="email-header">
+      <span class="pss">PSS: 71 / 100 — Trigger Angle</span>
+      <div class="field"><strong>Subject:</strong> <span>Corporate Sustainability Reporting Directive went live. Your pipeline did not.</span></div>
+      <div class="field"><strong>Preheader:</strong> <span>Which enterprises are choosing their cloud emissions vendor right now.</span></div>
+    </div>
+    <div class="email-body">
+      <p>John — large EU companies began reporting 2024 financials under the Corporate Sustainability Reporting Directive this year.</p>
+      <p>Every enterprise tech company with 250-plus employees and €40M in turnover needs ISO-compliant cloud emissions data. GreenPixie has the most audit-ready methodology in the market.</p>
+      <p>But the enterprises that should be buying GreenPixie this quarter are landing on Climatiq instead — because GreenPixie does not appear when they search for a solution.</p>
+      <p>The compliance window does not wait for a new hire to onboard.</p>
+      <p>A 20-minute call with me will show you exactly which enterprise segments are active right now, which acquisition channels GreenPixie is absent from, and what 90 days of structured outbound would produce.</p>
+      <p>Book it here: <a href="https://cal.com/jean-m-8f4kbr/15min" style="color:#00d68f;">https://cal.com/jean-m-8f4kbr/15min</a></p>
+      <p>Jean Mundabi Fala<br>MDB Growth Capital</p>
+      <p class="ps">PS: GreenPixie's Flexera partnership reaches 50,000-plus organisations. I have a specific idea for turning that passive distribution into active pipeline. I will cover it on the call.</p>
+    </div>
+  </div>
+
+  <div style="background:rgba(0,214,143,0.06); border:1px solid rgba(0,214,143,0.15); border-radius:14px; padding:24px 28px; margin-top:8px;">
+    <h4 style="color:var(--white); margin-bottom:10px;">Why these two angles work together</h4>
+    <p style="color:rgba(255,255,255,0.65); font-size:15px; margin-bottom:8px;">Email 1 is the observation. GreenPixie has the better product and nobody knows it. The ask is low-commitment: want me to send the map?</p>
+    <p style="color:rgba(255,255,255,0.65); font-size:15px; margin:0;">Email 2 is the urgency. The compliance deadline is not future. It is now. The call is sold on what the prospect walks away with, not on what MDB wants from them. Different angle types. Different frameworks. Both grounded in verified research about GreenPixie's specific situation.</p>
+  </div>
+</section>
+
+<!-- CARD 17: BEFORE/AFTER -->
+<section class="section" id="before-after">
+  <div class="tag">Card 17</div>
+  <h2>Before and After</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:8px;">What GreenPixie's numbers look like today versus what they look like after the five money levers are applied.</p>
+  <table class="ba-table">
+    <thead>
+      <tr>
+        <th>Area</th>
+        <th>Before</th>
+        <th>After</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="area">Outbound contacts per month</td>
+        <td class="before">0</td>
+        <td class="after">100 to 200 targeted EU enterprises</td>
+      </tr>
+      <tr>
+        <td class="area">Outbound qualified replies per month</td>
+        <td class="before">0</td>
+        <td class="after">5 to 10 (5% reply rate)</td>
+      </tr>
+      <tr>
+        <td class="area">Academy list conversion</td>
+        <td class="before">0 bookings</td>
+        <td class="after">6 to 10 bookings/month (5% of 200 registrants)</td>
+      </tr>
+      <tr>
+        <td class="area">Contact form to booked meeting rate</td>
+        <td class="before">~15%</td>
+        <td class="after">~40% (with Cal.com inline embed)</td>
+      </tr>
+      <tr>
+        <td class="area">Qualified discovery calls per month</td>
+        <td class="before">~3</td>
+        <td class="after">18 to 24 (from combined channels)</td>
+      </tr>
+      <tr>
+        <td class="area">Published case studies with outcomes</td>
+        <td class="before">0</td>
+        <td class="after">1 named, outcome-driven</td>
+      </tr>
+      <tr>
+        <td class="area">Competitive comparison pages</td>
+        <td class="before">0</td>
+        <td class="after">2 (GreenPixie vs Climatiq, GreenPixie vs CloudZero)</td>
+      </tr>
+      <tr>
+        <td class="area">Flexera channel</td>
+        <td class="before">Passive</td>
+        <td class="after">Active co-marketing with warm account list</td>
+      </tr>
+      <tr>
+        <td class="area">Time John Ridd spends on cold pipeline</td>
+        <td class="before">100%</td>
+        <td class="after">Under 20%</td>
+      </tr>
+      <tr>
+        <td class="area">Pipeline John Ridd did not personally build</td>
+        <td class="before">0%</td>
+        <td class="after">60 to 80%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:rgba(255,255,255,0.55); font-size:15px;">The goal is not to make John unnecessary. It is to make his time worth more by removing him from the tasks a documented system can handle.</p>
+</section>
+
+<!-- CARD 18: CASE STUDY -->
+<section class="section section-alt" id="case-study">
+  <div class="tag">Card 18</div>
+  <h2>Case Study: 16x Paid Acquisition Scale</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:32px;">This engagement is anonymised at the client's request. The numbers are verified.</p>
+  <div class="case-box">
+    <h3 style="margin-top:0;">The Situation</h3>
+    <p style="color:rgba(255,255,255,0.7);">A Business-to-Business software company in financial services. Enterprise customer base. Founders doing all acquisition personally. No paid media history. No outbound system. Revenue was growing but entirely founder-dependent.</p>
+    <div class="case-metrics">
+      <div class="case-metric">
+        <span class="num">£50K</span>
+        <span class="label">Starting monthly ad budget</span>
+      </div>
+      <div class="case-metric">
+        <span class="num">16x</span>
+        <span class="label">Scale achieved in 7 months</span>
+      </div>
+      <div class="case-metric">
+        <span class="num">£800K</span>
+        <span class="label">Monthly spend at scale</span>
+      </div>
+    </div>
+    <h3>What Was Built</h3>
+    <p style="color:rgba(255,255,255,0.7);">A structured paid acquisition programme across Google and LinkedIn. Account-based outbound targeting enterprise financial services firms. A lead nurture sequence for prospects who engaged but did not convert immediately. A case study content programme using anonymised customer outcomes.</p>
+    <h3>The Result — 7 Months Later</h3>
+    <p style="color:rgba(255,255,255,0.7);">Monthly paid acquisition budget: £800,000. Scale: 16x. Return on ad spend: maintained throughout. Outbound: running without founder involvement.</p>
+    <h3>The Principle</h3>
+    <p style="color:rgba(255,255,255,0.7); margin:0;">Scale requires a system. Founders who build the first system themselves create a ceiling. The ceiling is their own capacity. GreenPixie is at the same inflection point. The product is enterprise-grade. The founder has been the entire acquisition system. The ceiling is visible. The question is how fast to remove it.</p>
+  </div>
+</section>
+
+<!-- CARD 19: GROWTH LOOPS -->
+<section class="section" id="loops">
+  <div class="tag">Card 19</div>
+  <h2>Three Growth Feedback Loops</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:36px;">How GreenPixie builds compounding pipeline — not just one-off campaigns.</p>
+
+  <div class="loop-card">
+    <div class="loop-num">Loop 1</div>
+    <h4>The GreenOps Academy to Pipeline Loop</h4>
+    <p>A cloud sustainability professional finds GreenOps Academy. They complete Cloud Sustainability Fundamentals. They receive an email on completion day connecting the course content to a real business problem. They book a GPX Data assessment. They buy GreenPixie. They champion GreenPixie inside their organisation. Their engineering team learns about GreenOps. Three more people complete the Academy course.</p>
+    <p style="color:rgba(255,255,255,0.65);">The loop: Academy attracts professionals. Professionals become customers. Customers generate more Academy interest. Each cycle is warmer than the last.</p>
+    <div class="loop-broken">What closes this loop today: No post-completion email. No connection between Academy content and GPX Data. The loop is broken at the first step after course completion.</div>
+  </div>
+
+  <div class="loop-card">
+    <div class="loop-num">Loop 2</div>
+    <h4>The Flexera Partnership to Warm Outbound Loop</h4>
+    <p>A Flexera customer organisation sees GreenPixie sustainability data inside Flexera One. Their FinOps director notices the emissions numbers. They search for more context on GreenPixie. If they land on a page built for Flexera customers — with language that assumes they already have seen the data feature — the conversion rate is materially higher than a cold landing page.</p>
+    <p style="color:rgba(255,255,255,0.65);">The loop: Flexera distributes GreenPixie to 50,000 organisations. Warm accounts get personalised outreach. Conversions produce case studies. Case studies strengthen the Flexera partnership. Flexera promotes GreenPixie to more customers.</p>
+    <div class="loop-broken">What closes this loop today: No dedicated Flexera landing page. No co-marketing agreement for account data. The partnership generates passive awareness. The loop is broken before the first outbound step.</div>
+  </div>
+
+  <div class="loop-card">
+    <div class="loop-num">Loop 3</div>
+    <h4>The CSRD Compliance to Case Study Loop</h4>
+    <p>An enterprise sustainability officer searches "CSRD cloud emissions tool." They find GreenPixie's competitive comparison page ("GreenPixie vs Climatiq: which methodology survives a regulatory audit?"). They read why usage-based calculation is more defensible than spend-based proxies for auditors. They book a demo. After signing, they produce their CSRD disclosure using GPX Data. The numbers are audited and passed. GreenPixie gets a case study.</p>
+    <p style="color:rgba(255,255,255,0.65);">The loop: Compliance demand attracts buyers. Buyers produce case studies. Case studies attract the next wave of compliance buyers. Each case study makes the next sale easier.</p>
+    <div class="loop-broken">What closes this loop today: No competitive comparison page. No case study. No search ranking for the keyword that starts the loop.</div>
+  </div>
+</section>
+
+<!-- CARD 20: FAQ -->
+<section class="section section-alt" id="faq">
+  <div class="tag">Card 20</div>
+  <h2>Six Questions John Is Probably Asking</h2>
+
+  <div class="faq-item">
+    <h4>"Can someone outside the GreenOps community actually write content that technical buyers will respect?"</h4>
+    <p>The research in this package demonstrates GreenPixie-specific knowledge — ISO-14064 verification, usage-based versus spend-based methodology, GHG Protocol compliance, scope 3 cloud emissions. The email sequences in Card 16 use Dog Whistle Language that sounds like a GreenOps practitioner wrote it, not a marketing generalist. That is the standard every piece of outreach produced for GreenPixie would meet.</p>
+  </div>
+  <div class="faq-item">
+    <h4>"We are already hiring a Founding Growth Marketer. Why bring in an external partner at the same time?"</h4>
+    <p>The Founding Growth Marketer hire is the right call. MDB does not compete with it. MDB builds the documented system that new hire inherits on day one: the outbound list, the Academy nurture sequence, the case study brief, the competitive comparison pages. Without that foundation, the new hire spends their first three months building the infrastructure instead of running the campaigns. With it, they hit the ground running.</p>
+  </div>
+  <div class="faq-item">
+    <h4>"What happens if the outbound does not produce results in 90 days?"</h4>
+    <p>The 90-day sprint plan is structured around measurable outcomes at each stage. If outbound reply rates are below 3% after the first 50 contacts, the sequence gets reviewed and rewritten before scaling to 200. The system is designed to surface what is not working early — not after a full budget has been spent.</p>
+  </div>
+  <div class="faq-item">
+    <h4>"We have been relying on the Flexera partnership for distribution. Is that enough?"</h4>
+    <p>No. The Flexera OEM agreement gives GreenPixie passive access to 50,000 organisations. Passive access does not produce pipeline. It produces brand exposure. Converting that exposure into pipeline requires active co-marketing, dedicated landing pages, and outbound to warm Flexera accounts. The partnership is the starting point, not the strategy.</p>
+  </div>
+  <div class="faq-item">
+    <h4>"Is this the right time to spend on marketing when we have not closed a Series A?"</h4>
+    <p>The CSRD window is live now. The enterprises GreenPixie should be selling to are choosing their cloud emissions vendor this quarter. Waiting for Series A to start building pipeline means arriving in the market after vendor choices are locked in. The five money levers in this package start with the GreenOps Academy list (free to activate) and the calendar embed (two hours of implementation). The highest-return interventions require no budget at all.</p>
+  </div>
+  <div class="faq-item">
+    <h4>"How is MDB different from a traditional marketing agency?"</h4>
+    <p>A marketing agency delivers campaigns and invoices monthly. When the relationship ends, the campaigns end. MDB installs documented systems that GreenPixie owns. The outbound list, the Academy nurture sequence, the competitive comparison pages, the case study template — all of it is owned by GreenPixie from day one. MDB's job is to build the system and make itself unnecessary.</p>
+  </div>
+</section>
+
+<!-- CARD 21: ABOUT JEAN + WHAT MDB DELIVERS -->
+<section class="section" id="about">
+  <div class="tag">Card 21</div>
+  <h2>About Jean and What MDB Delivers</h2>
+  <p style="color:rgba(255,255,255,0.7);">Jean Mundabi Fala is a Business-to-Business growth strategist and Chief Executive Officer of MDB Growth Capital. His background is in paid acquisition, demand generation, and commercial architecture for companies at the zero-to-one stage.</p>
+  <div class="stat-row">
+    <div class="stat-box">
+      <span class="num">£2.6M</span>
+      <span class="label">Google Ads managed</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">16x</span>
+      <span class="label">Acquisition scale in 7 months</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">14</span>
+      <span class="label">B2B packages in 90 days</span>
+    </div>
+  </div>
+  <h3>What MDB Delivers for GreenPixie</h3>
+  <div class="icon-cards">
+    <div class="icon-card">
+      <div class="ic-icon">📧</div>
+      <div>
+        <h4>100 to 200 account outbound system</h4>
+        <p>Targeting EU enterprises under CSRD pressure — built, launched, and handed over.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">🎓</div>
+      <div>
+        <h4>GreenOps Academy nurture sequence</h4>
+        <p>Converts course completers into GPX Data pipeline — written, sequenced, and activated.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">🤝</div>
+      <div>
+        <h4>Flexera partnership co-marketing programme</h4>
+        <p>Proposed, negotiated, and launched. Turning passive OEM distribution into active pipeline.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">📋</div>
+      <div>
+        <h4>One outcome-driven case study</h4>
+        <p>Briefed, written, and published. Mastercard, NHS, or NTT Data — your choice of customer.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">⚔️</div>
+      <div>
+        <h4>Competitive comparison pages</h4>
+        <p>"GreenPixie vs Climatiq" and "GreenPixie vs CloudZero" — live on the GreenPixie website.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="ic-icon">📅</div>
+      <div>
+        <h4>Contact page conversion fix</h4>
+        <p>Cal.com calendar embed live, CTA rewritten, conversion rate improved. Two-hour implementation.</p>
+      </div>
+    </div>
+  </div>
+  <p style="color:rgba(255,255,255,0.55); font-size:15px; margin-top:24px;">Every deliverable is built, handed over, and owned by GreenPixie. No lock-in. No monthly retainer for access to work you paid to create.</p>
+</section>
+
+<!-- CARD 22: TWO PATHS -->
+<section class="section section-alt" id="paths">
+  <div class="tag">Card 22</div>
+  <h2>Two Ways Forward</h2>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:8px;">
+    <div class="loop-card" style="border-color:rgba(0,214,143,0.25);">
+      <div class="loop-num" style="font-size:18px; font-weight:900; color:var(--accent); margin-bottom:14px;">Path 1</div>
+      <h4>Book the 20-Minute Call</h4>
+      <p>If what you have read in this package is specific enough to warrant a conversation — book 20 minutes.</p>
+      <p style="color:rgba(255,255,255,0.6);">The call covers three things: which enterprise segments are most active right now, which acquisition channel GreenPixie should prioritise first, and what 90 days of structured outbound would produce based on realistic assumptions.</p>
+      <p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">No pitch. No slides. Specific to GreenPixie.</p>
+      <a href="https://cal.com/jean-m-8f4kbr/15min" class="btn-primary" target="_blank" style="display:inline-block;">Book Here</a>
+    </div>
+    <div class="loop-card">
+      <div class="loop-num" style="font-size:18px; font-weight:900; color:rgba(255,255,255,0.4); margin-bottom:14px;">Path 2</div>
+      <h4>Request the Competitor Acquisition Map</h4>
+      <p>If you want to see more before committing to a call — ask for the Competitor Acquisition Map.</p>
+      <p style="color:rgba(255,255,255,0.6);">It shows exactly where Climatiq and CloudZero are finding enterprise customers right now: the channels they are using, the content they are ranking for, the communities they are active in, and where GreenPixie is currently absent.</p>
+      <p style="color:rgba(255,255,255,0.6); margin-bottom:24px;">It is free. It is specific. Reply to Jean's email with "Send the map" and it goes out the same day.</p>
+      <a href="mailto:jean@mdbgrowthcapital.com?subject=Send the map" class="btn-ghost" style="display:inline-block;">Email Jean</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARD 23: LINKEDIN MESSAGES -->
+<section class="section" id="linkedin">
+  <div class="tag">Card 23</div>
+  <h2>LinkedIn Outreach Messages</h2>
+  <p style="color:rgba(255,255,255,0.6); margin-bottom:32px;">Three messages. Designed for a LinkedIn sequence. Send the connection request first.</p>
+
+  <div class="li-msg">
+    <div class="li-type">Connection Request (300 characters max)</div>
+    <p>John — I mapped GreenPixie's acquisition funnel this week. Found something specific about your search visibility versus Climatiq that I think you will want to see. Happy to send it over.</p>
+  </div>
+  <div class="li-msg">
+    <div class="li-type">Follow-Up Message 1 — After Connection Accepted, Day 3</div>
+    <p>Thanks for connecting, John.<br><br>I will keep this short.<br><br>GreenPixie has ISO-14064 verified cloud emissions data. Climatiq, CloudZero, and the native Amazon Web Services tool do not.<br><br>But right now, enterprises searching for a cloud emissions vendor under CSRD pressure are finding Climatiq first. The search gap is specific and fixable.<br><br>I built a competitor acquisition map showing exactly where GreenPixie is invisible and what channels Climatiq is using to win the deals GreenPixie should be closing.<br><br>Want me to send it over? No call needed to start.</p>
+  </div>
+  <div class="li-msg">
+    <div class="li-type">Follow-Up Message 2 — Breakup, Day 10</div>
+    <p>John — last message from me.<br><br>I know you are building out the commercial function from scratch right now. The Founding Growth Marketer hire is the right call.<br><br>One thing worth knowing before that person starts: the CSRD compliance window is the most concentrated demand signal GreenPixie has ever had. The enterprises that need ISO-verified cloud emissions data are searching for a vendor this quarter.<br><br>If the competitor acquisition map would be useful as a starting point for whoever joins, I am happy to send it. No obligation.<br><br>Either way — good luck with the build. GreenPixie's methodology is the strongest in the space.<br><br>Jean</p>
+  </div>
+</section>
+
+<!-- CARD 24 + BOOK: FINAL CTA + CAL.COM -->
+<section class="final-cta" id="book">
+  <div class="tag" style="margin-bottom:24px;">Card 24 — Book a Call</div>
+  <h2>What Happens Next</h2>
+  <p>This package is already the first step. The research, the audit, the money levers, the email sequences — they are not a proposal. They are proof that the work has already started.</p>
+  <p style="color:rgba(255,255,255,0.55); font-size:16px; max-width:560px; margin:0 auto 20px;">The Corporate Sustainability Reporting Directive window is live. Vendor choices are being made this quarter. The product is ready. The pipeline is not. That is what this partnership fixes.</p>
+  <div class="cta-btns">
+    <a href="mailto:jean@mdbgrowthcapital.com" class="btn-ghost">Email Jean</a>
+  </div>
+  <div class="cal-container">
+    <iframe
+      src="https://cal.com/jean-m-8f4kbr/15min?embed=true&layout=month_view"
+      title="Book a 20-minute call with Jean Mundabi Fala"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <p style="margin-top:24px; font-size:14px; color:rgba(255,255,255,0.3);">Strategy and GTM research by Jean Mundabi Fala</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Prepared exclusively for <span class="footer-accent">John Ridd, CEO and Co-Founder — GreenPixie</span></p>
+  <p>By <span class="footer-accent">Jean Mundabi Fala, CEO — MDB Growth Capital</span></p>
+</footer>
+
+</main>
+
+<script>
+// SIDE NAV ACTIVE STATE
+function setActive(el) {
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// SCROLL SPY
+const sections = document.querySelectorAll('section[id], .final-cta[id]');
+const navItems = document.querySelectorAll('.nav-item');
+
+function updateNav() {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    const href = item.getAttribute('href');
+    if (href && href === '#' + current) {
+      item.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+// VIDEO OVERLAY — remove overlay when VIDEO_URL_GOES_HERE is replaced
+const iframe = document.querySelector('.video-frame iframe');
+if (iframe && iframe.src && iframe.src !== 'VIDEO_URL_GOES_HERE' && iframe.src.includes('http')) {
+  const overlay = document.querySelector('.video-overlay');
+  if (overlay) overlay.style.display = 'none';
+}
+</script>
+
+</body>
+</html>
